@@ -1,14 +1,14 @@
 {
-  "name": "auth-basic",
+  "name": "auth-jwt",
   "version": "0.0.1",
-  "description": "基础权限验证实现",
+  "description": "基础 JWT 验证实现",
   "author": "StringKE",
   "private": true,
   "license": "UNLICENSED",
-  "homepage": "https://github.com/nest-kit/auth-basic",
+  "homepage": "https://github.com/nest-kit/auth-jwt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nest-kit/auth-basic.git"
+    "url": "https://github.com/nest-kit/auth-jwt.git"
   },
   "scripts": {
     "prebuild": "rimraf dist",

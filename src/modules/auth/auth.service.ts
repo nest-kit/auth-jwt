@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserEntity, UserService } from '../user/user.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
@@ -7,8 +8,23 @@ export class AuthService {
    * Nestjs 将会自动处理此参数
    *
    * @param userService 注入 UserService 来自 UserModule 内
+   * @param jwtService 注入 JwtModule 重的 JwtService 提供签发 Jwt Access Token 功能
    */
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
+
+  singUser(user: UserEntity): { access_token: string } {
+    const payload = {
+      username: user.username,
+      date: new Date().toString(),
+      text: '加密token前的信息',
+    };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
 
   validate(username: string, password: string): UserEntity | undefined {
     // 查找一个用户
